@@ -5,8 +5,13 @@ class Player:
         self.phy_damage = phy_damage
 
 
-
-    def upgrade_skill(self):
-        player.spell_list[].upgrade()   #for loop nutzen um richtige fähigkeit zu nutzen
+    def upgrade_skill(self, spell_name):
+        # spell mithilfe des Namens upgraden
+        for spell in self.spell_list:
+            if spell.name = spell_name:
+                spell.spell_level += 1
+                print(f"{spell.name} ist jetzt Level {spell.spell_level}")
+                return
+        print(f"Zauber '{spell_name} nicht gefunden")
 
         
