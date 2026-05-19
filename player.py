@@ -3,6 +3,7 @@ class Player:
         self.name = name
         self.hp = hp
         self.phy_damage = phy_damage
+        self.spell_list = [] # muss irgendwie gefüllt werden
 
 
     def upgrade_skill(self, spell_name):
