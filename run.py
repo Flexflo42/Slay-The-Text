@@ -20,14 +20,15 @@ def select_opponent(dungeon_current):
 
 
 def input_numbers(length):
-    try:
-        choice = int(input("Select one of the numbers: "))
-        if 1 <= choice <= length:
-            return choice
-        else:
+    while True:
+        try:
+            choice = int(input("Select one of the numbers: "))
+            if 1 <= choice <= length:
+                return choice
+            else:
+                print(f"Please select a number between 1 and {length}!")
+        except ValueError:
             print(f"Please select a number between 1 and {length}!")
-    except ValueError:
-        print(f"Please select a number between 1 and {length}!")
 
 
 
