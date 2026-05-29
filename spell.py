@@ -73,7 +73,7 @@ def bite(level=1):
     return Spell("Bite", 20, "attack", 1.25, level)
 
 def power_slash(level=1):
-    return Spell("Power Slash", 30, "attack", 2.25, level)
+    return Spell("Power Slash", 30, "attack", 20.25, level)
 
 def heal(level=1):
     return Spell("Heal", 30, "heal", 0.75, level)

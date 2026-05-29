@@ -3,6 +3,10 @@ import player as pl # ja frag mich nicht, warum das jetzt so nötig war :)
 import monster
 import random
 import time
+import pygame
+
+pygame.init()
+pygame.mixer.init()
 
 # Später noch sleep() einbauen um die Ausgaben im Terminal etwas "natürlicher" zu machen
 
@@ -101,6 +105,11 @@ def combat(player, opponent):
 
         if opponent.hp <= 0:
             print(f"{opponent.name} was defeated!\n")
+            pygame.mixer.music.load("soundfiles/levelup.ogg")
+            pygame.mixer.music.play()
+
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
             return "Victory"
         else:
             selected = opponent.choose_spell()
