@@ -100,7 +100,7 @@ class Player:
 
 
 def create_player():
-    return Player("Player", 100, 100, 100, 100, 20, 20, 5,
+    return Player("Player", (100), 100, 100, 100, 20, 20, 5,
             [spell.slash(), spell.power_slash(), spell.heal(), spell.armor_spell(), spell.crush_armor(), spell.rage()])
     
 

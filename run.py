@@ -34,11 +34,11 @@ def input_numbers(length):
 
 def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt es eine Funktion die in allen gängigen Terminals funktioniert?
     
-    print(f"\n{50*"-"}") # Lange Linie für die Optik
+    print(f"\n{50 * '-'}") # Lange Linie für die Optik
     print(f"{player.name} | HP: {player.hp}/{player.max_hp} | Mana: {player.mana}/{player.max_mana}") #Armor, Damage und Magic könnten noch angezeigt werden
 
     print(f"\n{opponent.name} | HP: {opponent.hp}/{opponent.max_hp}")
-    print(f"{50*"-"}\n")
+    print(f"{50*'-'}\n")
     time.sleep(1)
 
 
@@ -46,7 +46,7 @@ def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt
 def print_spells(player):
     print()
     for counter, spell in enumerate(player.spell_list, start=1):   # durch enumerate wird gleichzeitig die liste durchgegangen und der zähler hochgezählt
-        print(f"{counter}: {spell.name} +{spell.spell_level} [{spell.mana_cost}]", end=" | ") # sollte spätestens bei mehr als 6 spells in 2 zeilen kommen (verzweigung nutzen?)
+        print(f"{counter}: {spell.name} +{spell.spell_level} [{spell.mana_cost}]", end = " | ") # sollte spätestens bei mehr als 6 spells in 2 zeilen kommen (verzweigung nutzen?)
     print()
     print()
 

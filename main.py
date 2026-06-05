@@ -1,4 +1,5 @@
 import run
+import progress
 
 game_runs = True
 
@@ -17,7 +18,7 @@ while game_runs:
             case "s":
                 run.start_run()
             case "u":
-                pass #menu für metaprogression einfügen
+                progress.upgrade_menu()
             case "e":
                 validation = input("\nDo you really want to quit? Press Y/n: ")
                 if validation   == "y":
@@ -25,4 +26,4 @@ while game_runs:
                 else:
                     pass
             case _:
-                print("Invalid Option, try again.")
+                print("Invalid Option, please try again.")
