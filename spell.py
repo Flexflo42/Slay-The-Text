@@ -23,6 +23,8 @@ class Spell:
             reduced_dmg = dmg - (dmg * self.armor_calc(target))           
             reduced_dmg_int = round(reduced_dmg)
             target.hp -= reduced_dmg_int #wenn Zeit noch so polieren, dass die HP nicht unter 0 gehen kann
+            pygame.mixer.music.load("soundfiles/SwingWeaponSpecialWarriorA.ogg")
+            pygame.mixer.music.play()
         
             print(f"{target.name} takes {reduced_dmg_int} damage!") 
 
