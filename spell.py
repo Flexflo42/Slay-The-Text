@@ -1,3 +1,8 @@
+import pygame
+
+pygame.init()
+pygame.mixer.init()
+
 class Spell:
     def __init__(self, name, mana_cost, category, modifier, spell_level=1):
         self.name = name
@@ -25,6 +30,8 @@ class Spell:
             value = self.modifier + (self.spell_level * 0.25)
             heal_amount = self.modifier * user.magic
             heal_amount_int = round(heal_amount)
+            pygame.mixer.music.load("soundfiles/aoe2-30-wololo.mp3")
+            pygame.mixer.music.play()
 
             if heal_amount_int + user.hp > user.max_hp:  #Damit die HP nicht durch Heilung über max_hp hinaus geht
                 heal_amount_int = user.max_hp - user.hp
