@@ -45,8 +45,8 @@ class Progress_System: # eine klasse für ein objekt um die währung und die lis
             print ("This upgrade is already maxed out.")
 
         elif (self.progress_list[choice].cost * (self.progress_list[choice].tier + 1)) <= self.currency:
-            self.progress_list[choice].tier += 1
             self.currency -= (self.progress_list[choice].cost * (self.progress_list[choice].tier + 1))
+            self.progress_list[choice].tier += 1
 
         else:
             print ("Not enough essence, please choose another upgrade.")
@@ -61,25 +61,26 @@ def progress_hp():
 def progress_mana():
     return Progress ("Mana", 10, 2)
 
-def progress_armor():
-    return  Progress ("Armor", 1, 2)
-
 def progress_damage():
     return Progress ("Damage", 3, 2)
 
 def progress_magic():
     return Progress ("Magic", 3, 2)
 
+def progress_armor():
+    return  Progress ("Armor", 1, 2)
+
+
 def progress_player(currency = 0):
     return Progress_System (
         [progress_hp(),
         progress_mana(),
-        progress_armor(),
         progress_damage(),
-        progress_magic()], currency
+        progress_magic(),
+        progress_armor()], currency
     )
 
-progress_status = progress_player(5) # default value 0
+progress_status = progress_player(10) # default value 0
 
 
 

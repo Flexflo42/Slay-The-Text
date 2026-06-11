@@ -4,12 +4,12 @@ import spellupgrade
 
 
 class Player:
-    def __init__(self, name, max_hp, hp, max_mana, mana, damage, magic, armor, spell_list):
+    def __init__(self, name, max_hp, max_mana, damage, magic, armor, spell_list):
         self.name = name
         self.max_hp = max_hp
-        self.hp = hp
+        self.hp = max_hp
         self.max_mana = max_mana
-        self.mana = mana
+        self.mana = max_mana
         self.damage = damage
         self.damage_default = damage
         self.magic = magic
@@ -103,8 +103,8 @@ class Player:
         self.magic = self.magic_default
 
 
-def create_player():
-    return Player("Player", (100), 100, 100, 100, 20, 20, 5,
+def create_player(progr):
+    return Player("Player", (100 + progr.get_value(0)), (100 + progr.get_value(1)), (20 + progr.get_value(2)), (20 + progr.get_value(3)), (5 + progr.get_value(4)),
             [spell.slash(), spell.power_slash(), spell.heal(), spell.armor_spell(), spell.crush_armor(), spell.rage()])
     
 
