@@ -105,7 +105,7 @@ class Player:
 
 def create_player(progr):
     return Player("Player", (100 + progr.get_value(0)), (100 + progr.get_value(1)), (20 + progr.get_value(2)), (20 + progr.get_value(3)), (5 + progr.get_value(4)),
-            [spell.slash(), spell.power_slash(), spell.heal(), spell.armor_spell(), spell.crush_armor(), spell.rage()])
+            [spell.slash(), spell.power_slash(), spell.heal(), spell.armor_spell(), spell.crush_armor(), spell.rage(), spell.meditation()])
     
 
 

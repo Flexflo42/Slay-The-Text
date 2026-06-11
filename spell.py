@@ -54,6 +54,12 @@ class Spell:
 
             print(f"{user.name} increased its armor by {value}!")
 
+        elif self.category == "restore_mana":
+            value = self.modifier + (self.spell_level * 5)
+            user.mana += value
+
+            print(f"{user.name} has restored {value} of his mana")
+
         # Anpassung wenn Spells mit neuen Effekten erstellt werden
 
     def armor_calc(self, target):
@@ -87,6 +93,8 @@ def crush_armor(level=1):
 def armor_spell(level=1):
     return Spell("Armor Spell", 20, "armor_buff", 2.5, level)
 
+def meditation(level=1):
+    return Spell("Meditation", 0, "restore_mana", 30, level)
 # Player und Monster erhalten so seperate Objekte die individuell angepasst werden können -> SpellUpgrades
 
 
