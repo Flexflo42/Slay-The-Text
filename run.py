@@ -3,6 +3,7 @@ import player as pl # ja frag mich nicht, warum das jetzt so nötig war :)
 import monster
 import random
 import time
+import progress
 
 # Später noch sleep() einbauen um die Ausgaben im Terminal etwas "natürlicher" zu machen
 
@@ -18,18 +19,22 @@ def select_opponent(dungeon_current):
         return random.choice([monster.giant_mudcrab(), monster.basilisk()])
     
 
-
-def input_numbers(length):
+def input_numbers(length, exit=0):
     while True:
         try:
-            choice = int(input("Select one of the numbers: "))
+            if exit == 1: # hiermit kann ein spezielles menü genutzt werden das statt einer wahl auch einen exit erlaubt
+                choice = int(input("Select on of the numbers or 0 to exit the menu: "))
+            else:
+                choice = int(input("Select one of the numbers: "))
             if 1 <= choice <= length:
                 return choice
+            if choice == 0 and exit == 1: 
+                return choice
+               
             else:
                 print(f"Please select a number between 1 and {length}!")
         except ValueError:
             print(f"Please select a number between 1 and {length}!")
-
 
 
 def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt es eine Funktion die in allen gängigen Terminals funktioniert?
@@ -42,14 +47,12 @@ def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt
     time.sleep(1)
 
 
-
 def print_spells(player):
     print()
     for counter, spell in enumerate(player.spell_list, start=1):   # durch enumerate wird gleichzeitig die liste durchgegangen und der zähler hochgezählt
         print(f"{counter}: {spell.name} +{spell.spell_level} [{spell.mana_cost}]", end = " | ") # sollte spätestens bei mehr als 6 spells in 2 zeilen kommen (verzweigung nutzen?)
     print()
     print()
-
 
 
 def select_spell(player):
@@ -64,13 +67,11 @@ def select_spell(player):
             print("Not enough Mana!")
 
 
-
 def mana_check(player, choice):
     if player.spell_list[choice-1].mana_cost <= player.mana:
         return True
     else:
         return False
-
 
 
 def victory_screen():
@@ -82,8 +83,6 @@ def victory_screen():
     print("-" * 40)
     print("\n")
     time.sleep(3)
-
-
 
 
 def combat(player, opponent): 
@@ -101,6 +100,9 @@ def combat(player, opponent):
 
         if opponent.hp <= 0:
             print(f"{opponent.name} was defeated!\n")
+            time.sleep(2)
+            progress.progress_status.currency += (1 * opponent.pool) # Währungsbelohnung für die Metaprogression, um 1 höher Stufe von Monster, ggfs eigene variable erstellen falls wert leicht geändert werden soll
+            print(f"You have received {1 * opponent.pool} Essence as a reward. You currently have {progress.progress_status.currency} Essence\n")
             return "Victory"
         else:
             selected = opponent.choose_spell()
@@ -131,6 +133,8 @@ def start_run():
         combat_result = combat(player, opponent)
 
         if combat_result == "Victory":
+            if dungeon_current.current_battle == 9: # Nach siegreichem letzen Kampf soll nicht noch mal das Upgrade Menü kommen
+                continue
             player.reset_stats() # hier nach oder nach choose_upgrade() wäre ein clear terminal sinnvoll
             player.choose_upgrade()
             time.sleep(2)

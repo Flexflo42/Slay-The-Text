@@ -52,13 +52,17 @@ class Player:
                     upgrade.rarity = "epic"
                     
                     print(f"{counter}: Epic Upgrade! '{upgrade.name}' for {upgrade.level_up} levels")
+                else:
+                    print(f"{counter}: '{upgrade.name}' for {upgrade.level_up} level") # Ist das level des spell zu hoch gibt es nur ein standard upgrade
 
             elif result == "rare":
                 if upgrade.spell_level <= 3:
                     upgrade.level_up = 2
                     upgrade.rarity = "rare" 
                 
-                    print(f"{counter}: Rare Upgrade! '{upgrade.name}' for {upgrade.level_up} levels")             
+                    print(f"{counter}: Rare Upgrade! '{upgrade.name}' for {upgrade.level_up} levels") 
+                else:
+                     print(f"{counter}: '{upgrade.name}' for {upgrade.level_up} level") # ebenfalls degration zu standardupgrade falls spell level 4 war           
             else:
                 print(f"{counter}: '{upgrade.name}' for {upgrade.level_up} level")
         
