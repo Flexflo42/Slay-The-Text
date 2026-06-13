@@ -46,8 +46,31 @@ class Progress_System: # eine klasse für ein objekt um die währung und die lis
 
         else:
             print ("Not enough essence, please choose another upgrade.")
+   
+    # Ab hier kommen die Methoden zur Datenspeicherung
+    def create_dict(self): 
+        progress_dict = {}
+        for item in self.progress_list:
+            progress_dict[item.name] = {
+                #"name": item.name, #wäre aktuell doppelt in der datenstruktur
+                "value": item.value,
+                "cost": item.cost,
+                "tier": item.tier
+            }
+        return progress_dict
 
-
+    def create_data(self):
+        data = {
+        "upgrades": self.create_dict(),
+        "currency": self.currency
+    }
+        return data
+    
+    def save_progress(self):
+        data = self.create_data()
+        with open ("progress_save.json", "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=4, ensure_ascii=False)
+            # mit ensure_asccii=False bleiben Sonderzeichen wie Umlaute lesbar, notwendig trotz utf-8 encoding
 
 #Factory Functions
 
@@ -109,13 +132,15 @@ def shop():
         else:
             progress_status.buy_upgrade(choosen_upgrade)
 
+
+'''
 # Ab hier kommen die Funktionen zur Datenspeicherung
 
 def create_dict(progress_list): # passen die besser in eine klasse, Progress_System?
     progress_dict = {}
     for item in progress_list:
         progress_dict[item.name] = {
-            "name": item.name,
+            #"name": item.name, #wäre aktuell doppelt in der datenstruktur
             "value": item.value,
             "cost": item.cost,
             "tier": item.tier
@@ -129,13 +154,52 @@ def create_data(progress_list, currency):
     }
     return data
 
-
 def save_progress(status_list, status_currency):
     data = create_data(status_list, status_currency)
     with open ("progress_save.json", "w", encoding="utf-8") as file:
         json.dump(data, file, indent=4, ensure_ascii=False)
         # mit ensure_asccii=False bleiben Sonderzeichen wie Umlaute lesbar, notwendig trotz utf-8 encoding
 
+'''
 
-save_progress(progress_status.progress_list, progress_status.currency)
 
+# Funktionen zum Laden der Daten
+
+def load_progress_savefile():
+    with open ("progress_save.json", "r", encoding="utf-8") as file:
+        data = json.load(file)
+        return data
+
+'''
+def load_progress_old(): # Werte werden zur Laufzeit (wenn die Objekte schon existieren) angepasst
+    data = load_progress_savefile()
+    progress_status.currency = data["currency"]
+    for index, key in enumerate(data["upgrades"].keys(), start=0):
+        value_list = []
+        for value in data["upgrades"][key].values():
+            value_list.append(value)
+        progress_status.progress_list[index].value = value_list[0]
+        progress_status.progress_list[index].cost = value_list[1]
+        progress_status.progress_list[index].tier = value_list[2]
+
+#load_progress_old()
+#for i in range (5): print(progress_status.progress_list[i].tier) # test
+'''
+
+def load_progress(): # Durch KI verbesserte Methode, selbes Ergebnis sieht aber tbh deutlich robuster und cleaner aus
+    daten = load_progress_savefile()
+    progress_status.currency = daten["currency"]
+    for upgrade in progress_status.progress_list:
+        data = daten["upgrades"][upgrade.name]
+
+        upgrade.value = data["value"]
+        upgrade.cost = data["cost"]
+        upgrade.tier = data["tier"]
+
+#for i in range (5): print(progress_status.progress_list[i].tier) # test
+
+
+#save_progress(progress_status.progress_list, progress_status.currency)
+
+
+progress_status.save_progress()

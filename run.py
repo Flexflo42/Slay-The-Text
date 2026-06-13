@@ -119,9 +119,9 @@ def combat(player, opponent):
 
 def start_run():
 
-    dungeon_current = dungeon.Dungeon(9) # Parameter bestimmt wie viele Kämpfe gespielt werden 
+    dungeon_current = dungeon.Dungeon(9) # Parameter bestimmt wie viele Kämpfe gespielt werden
     player = pl.create_player(progress.progress_status) # das progress objekt (inklusive des attributs: upgrade liste) wird mitübergeben
-    # Metaprogression laden
+
 
     while dungeon_current.current_battle < dungeon_current.total_battles:
 
@@ -142,7 +142,7 @@ def start_run():
             print(f"You delved too greedily and too deep... \nMaybe you will be luckier in your next life.")
             return #Status des runs könnte noch returnt werden
 
-    victory_screen()   
+    victory_screen()
     
            
 

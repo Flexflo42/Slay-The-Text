@@ -1,5 +1,6 @@
 import run
 import progress
+progress.load_progress()
 
 game_runs = True
 
