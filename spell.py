@@ -3,21 +3,24 @@ class Spell:
         self.name = name
         self.mana_cost = mana_cost
         self.category= category
-        self.modifier = modifier # Nutzbar für Buffs und Nerfs wie Rüstungsbrecher
+        self.modifier = modifier # Ein Wert für alle Spellarten, solange Spells immer nur genau ein Verhalten haben
         self.spell_level = spell_level
         # um spells exakt addressieren zu können, z.B. wenn man den Spellnamen zur Laufzeit ändern möchte können IDs hilfreich sein
 
     def use_spell(self, user, target):
         
         print(f"{user.name} uses {self.name}!")
-        # Kann weg, falls Combat Result als eigene Klasse implementiert werden sollte!
-
+        
         if self.category == "attack":
             value = self.modifier + (self.spell_level * 0.25) 
             dmg = value * user.damage
             reduced_dmg = dmg - (dmg * self.armor_calc(target))           
             reduced_dmg_int = round(reduced_dmg)
-            target.hp -= reduced_dmg_int #wenn Zeit noch so polieren, dass die HP nicht unter 0 gehen kann
+            if target.hp - reduced_dmg_int < 0: # Damit die HP nicht unter sondern immer auf 0 geht
+                reduced_dmg_int = target.hp
+                target.hp -= reduced_dmg_int
+            else:
+                target.hp -= reduced_dmg_int #
         
             print(f"{target.name} takes {reduced_dmg_int} damage!") 
 
@@ -35,8 +38,8 @@ class Spell:
             print(f"{user.name} healed itself for {heal_amount_int} HP!")
 
         elif self.category == "damage_buff":
-            value = self.modifier + (self.spell_level * 2) 
-            user.damage += value 
+            value = self.modifier + (self.spell_level * 2)
+            user.damage += value
 
             print(f"{user.name} increased its damage by {value}!")
 
@@ -56,9 +59,12 @@ class Spell:
 
         elif self.category == "restore_mana":
             value = self.modifier + (self.spell_level * 5)
-            user.mana += value
-
-            print(f"{user.name} has restored {value} of his mana")
+            if value + user.mana > user.max_mana: # Damit Mana nicht über den maximalen Wert hinaus geht
+                value = user.max_mana - user.mana
+                user.mana += value
+            else:
+                user.mana += value
+            print(f"{user.name} has restored {value} of his mana!")
 
         # Anpassung wenn Spells mit neuen Effekten erstellt werden
 
@@ -66,9 +72,6 @@ class Spell:
         damage_reduction = target.armor / (target.armor + 15) #bei 15 armor ist die reduktion bei 50% -> deminishing returns
         return damage_reduction
     
-    
-
-        
 
 # Bitte Helm tragen, ab hier beginnt die Factory-Straße
 
