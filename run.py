@@ -140,9 +140,11 @@ def start_run():
             time.sleep(2)
         else:
             print(f"You delved too greedily and too deep... \nMaybe you will be luckier in your next life.")
+            progress.progress_status.save_progress()
             return #Status des runs könnte noch returnt werden
 
     victory_screen()
+    progress.progress_status.save_progress() # Progress Upgrades und Währung wird gespeichert
     
            
 
