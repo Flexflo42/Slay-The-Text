@@ -1,4 +1,4 @@
-import run
+import json
 
 class Progress:
 
@@ -15,17 +15,14 @@ class Progress_System: # eine klasse für ein objekt um die währung und die lis
         self.progress_list = progress_list
         self.currency = currency
 
-
     def get_value(self, index): #während der spielererstellung anwenden, in factory aufrufen. Der Wert mit dem zb die HP zum Start zusätzlich erhöht wird
         return self.progress_list[index].tier * self.progress_list[index].value 
-
 
     def print_current_unlocks(self):
         print()
         for item in self.progress_list:
             print(f"{item.name} +{item.tier * item.value}", end = " | ")
         print("\n\n")
-
 
     def print_available_unlocks(self):
         print()
@@ -38,7 +35,6 @@ class Progress_System: # eine klasse für ein objekt um die währung und die lis
         print(f"You have {self.currency} Essence to buy upgrades with.")
         print()
 
-    
     def buy_upgrade(self, choice):
         choice -= 1                                    # Damit der richtige Index der Liste angesprochen wird
         if self.progress_list[choice].tier >= 5:
@@ -89,7 +85,6 @@ def upgrade_menu():
     print ()
     select_menu()
 
-
 def select_menu():
     while True:
         choice = input("Insert '1' to see your current unlocks,'2' to see upgrades you can buy, or '3' to exit this menu: ")
@@ -104,13 +99,43 @@ def select_menu():
             case _:
                 print("Invalid Option, please try again.")
             
-
 def shop():
+    from run import input_numbers #import wurde genau dort hin verschoben, wo es gebraucht wird durch -> sonst probleme wegen circular import
     while True:
         progress_status.print_available_unlocks()
-        choosen_upgrade = run.input_numbers(len(progress_status.progress_list), 1) # da die existierende input funktion genutzt wird, ist es aktuell nicht möglich hier den direkten exit zu machen 
+        choosen_upgrade = input_numbers(len(progress_status.progress_list), 1) # da die existierende input funktion genutzt wird, ist es aktuell nicht möglich hier den direkten exit zu machen 
         if choosen_upgrade <= 0:
             return
         else:
             progress_status.buy_upgrade(choosen_upgrade)
+
+# Ab hier kommen die Funktionen zur Datenspeicherung
+
+def create_dict(progress_list): # passen die besser in eine klasse, Progress_System?
+    progress_dict = {}
+    for item in progress_list:
+        progress_dict[item.name] = {
+            "name": item.name,
+            "value": item.value,
+            "cost": item.cost,
+            "tier": item.tier
+        }
+    return progress_dict
+
+def create_data(progress_list, currency):
+    data = {
+        "upgrades": create_dict(progress_list),
+        "currency": currency
+    }
+    return data
+
+
+def save_progress(status_list, status_currency):
+    data = create_data(status_list, status_currency)
+    with open ("progress_save.json", "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+        # mit ensure_asccii=False bleiben Sonderzeichen wie Umlaute lesbar, notwendig trotz utf-8 encoding
+
+
+save_progress(progress_status.progress_list, progress_status.currency)
 

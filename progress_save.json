@@ -1,0 +1,35 @@
+{
+    "upgrades": {
+        "HP": {
+            "name": "HP",
+            "value": 10,
+            "cost": 2,
+            "tier": 0
+        },
+        "Mana": {
+            "name": "Mana",
+            "value": 10,
+            "cost": 2,
+            "tier": 0
+        },
+        "Damage": {
+            "name": "Damage",
+            "value": 3,
+            "cost": 2,
+            "tier": 0
+        },
+        "Magic": {
+            "name": "Magic",
+            "value": 3,
+            "cost": 2,
+            "tier": 0
+        },
+        "Armor": {
+            "name": "Armor",
+            "value": 1,
+            "cost": 2,
+            "tier": 0
+        }
+    },
+    "currency": 10
+}
