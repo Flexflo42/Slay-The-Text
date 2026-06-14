@@ -31,7 +31,6 @@ def input_numbers(length, exit=0):
                 return choice
             if choice == 0 and exit == 1: 
                 return choice
-               
             else:
                 print(f"Please select a number between 1 and {length}!")
         except ValueError:
@@ -130,7 +129,7 @@ def start_run():
             if dungeon_current.current_battle == 9: # Nach siegreichem letzen Kampf soll nicht noch mal das Upgrade Menü kommen
                 continue
             player.reset_stats() # hier nach oder nach choose_upgrade() wäre ein clear terminal sinnvoll
-            player.choose_upgrade()
+            player.select_upgrade()
             time.sleep(2)
         else:
             print(f"You delved too greedily and too deep... \nMaybe you will be luckier in your next life.")
