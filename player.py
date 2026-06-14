@@ -4,6 +4,7 @@ import spellupgrade
 
 
 class Player:
+
     def __init__(self, name, max_hp, max_mana, damage, magic, armor, spell_list):
         self.name = name
         self.max_hp = max_hp
@@ -17,7 +18,6 @@ class Player:
         self.armor = armor
         self.armor_default = armor
         self.spell_list = spell_list
-
 
     def choose_upgrade(self): # 
         valid_list = []
@@ -81,8 +81,6 @@ class Player:
             except ValueError:
                 print(f"Please select a number between 1 and {len(upgrade_list)}!") # Zweiter Edge Case: Kein int eingegeben
 
-
-
     def level_up(self, name, level_up):
         for spell in self.spell_list:
             if name == spell.name:
@@ -90,10 +88,8 @@ class Player:
                 print(f"{spell.name}:+{spell.spell_level - level_up} got upgraded to {spell.name}:+{spell.spell_level}")
                 #print(spell.name, spell.spell_level) # test
 
-
     def pay_mana(self, spell):
         self.mana -= spell.mana_cost
-
 
     def reset_stats(self):
         self.hp = self.max_hp
@@ -101,7 +97,6 @@ class Player:
         self.armor = self.armor_default
         self.damage = self.damage_default
         self.magic = self.magic_default
-
 
 def create_player(progr):
     return Player("Player", (100 + progr.get_value(0)), (100 + progr.get_value(1)), (20 + progr.get_value(2)), (20 + progr.get_value(3)), (5 + progr.get_value(4)),

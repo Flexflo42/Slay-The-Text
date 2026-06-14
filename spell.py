@@ -1,4 +1,5 @@
 class Spell:
+
     def __init__(self, name, mana_cost, category, modifier, spell_level=1):
         self.name = name
         self.mana_cost = mana_cost
@@ -8,9 +9,8 @@ class Spell:
         # um spells exakt addressieren zu können, z.B. wenn man den Spellnamen zur Laufzeit ändern möchte können IDs hilfreich sein
 
     def use_spell(self, user, target):
-        
         print(f"{user.name} uses {self.name}!")
-        
+
         if self.category == "attack":
             value = self.modifier + (self.spell_level * 0.25) 
             dmg = value * user.damage
@@ -65,14 +65,12 @@ class Spell:
             else:
                 user.mana += value
             print(f"{user.name} has restored {value} of his mana!")
-
-        # Anpassung wenn Spells mit neuen Effekten erstellt werden
+# Anpassung wenn Spells mit neuen Effekten erstellt werden
 
     def armor_calc(self, target):
         damage_reduction = target.armor / (target.armor + 15) #bei 15 armor ist die reduktion bei 50% -> deminishing returns
         return damage_reduction
     
-
 # Bitte Helm tragen, ab hier beginnt die Factory-Straße
 
 def slash(level=1):
@@ -82,7 +80,7 @@ def bite(level=1):
     return Spell("Bite", 20, "attack", 1.25, level)
 
 def power_slash(level=1):
-    return Spell("Power Slash", 30, "attack", 20.25, level)  # 30, 2.25 aktuelle default werte
+    return Spell("Power Slash", 30, "attack", 2.25, level)  # 30, 2.25 aktueller default wert
 
 def heal(level=1):
     return Spell("Heal", 30, "heal", 0.75, level)
@@ -100,7 +98,10 @@ def meditation(level=1):
     return Spell("Meditation", 0, "restore_mana", 30, level)
 # Player und Monster erhalten so seperate Objekte die individuell angepasst werden können -> SpellUpgrades
 
+# devmode spells
 
+def nuke(level=1):
+    return Spell("Nuke", 10, "attack", 30, level)
 
 
 

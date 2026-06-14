@@ -7,6 +7,7 @@ game_runs = True
 
 
 
+
 ### Game Start
 
 while game_runs:
@@ -26,5 +27,8 @@ while game_runs:
                     exit()
                 else:
                     pass
+            case "nuke":
+                run.dev_mode = True
+                print("I am the one who knocks!")
             case _:
                 print("Invalid Option, please try again.")

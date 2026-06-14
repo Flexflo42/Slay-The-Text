@@ -4,6 +4,8 @@ import monster
 import random
 import time
 import progress
+from spell import nuke
+dev_mode = False
 
 # Später noch sleep() einbauen um die Ausgaben im Terminal etwas "natürlicher" zu machen
 
@@ -17,7 +19,6 @@ def select_opponent(dungeon_current):
     
     if 7 <= dungeon_current.current_battle <= 9:
         return random.choice([monster.giant_mudcrab(), monster.basilisk()])
-    
 
 def input_numbers(length, exit=0):
     while True:
@@ -36,7 +37,6 @@ def input_numbers(length, exit=0):
         except ValueError:
             print(f"Please select a number between 1 and {length}!")
 
-
 def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt es eine Funktion die in allen gängigen Terminals funktioniert?
     
     print(f"\n{50 * '-'}") # Lange Linie für die Optik
@@ -46,14 +46,12 @@ def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt
     print(f"{50*'-'}\n")
     time.sleep(1)
 
-
 def print_spells(player):
     print()
     for counter, spell in enumerate(player.spell_list, start=1):   # durch enumerate wird gleichzeitig die liste durchgegangen und der zähler hochgezählt
         print(f"{counter}: {spell.name} +{spell.spell_level} [{spell.mana_cost}]", end = " | ") # sollte spätestens bei mehr als 6 spells in 2 zeilen kommen (verzweigung nutzen?)
     print()
     print()
-
 
 def select_spell(player):
 
@@ -66,13 +64,11 @@ def select_spell(player):
         else: 
             print("Not enough Mana!")
 
-
 def mana_check(player, choice):
     if player.spell_list[choice-1].mana_cost <= player.mana:
         return True
     else:
         return False
-
 
 def victory_screen():
     time.sleep(1)
@@ -83,7 +79,6 @@ def victory_screen():
     print("-" * 40)
     print("\n")
     time.sleep(3)
-
 
 def combat(player, opponent): 
     print(f"\nA {opponent.name} appeared. Prepare yourself!")
@@ -115,13 +110,12 @@ def combat(player, opponent):
                 return "Defeat"
             print("Next Turn!")   
 
-
-
 def start_run():
 
     dungeon_current = dungeon.Dungeon(9) # Parameter bestimmt wie viele Kämpfe gespielt werden
     player = pl.create_player(progress.progress_status) # das progress objekt (inklusive des attributs: upgrade liste) wird mitübergeben
-
+    if dev_mode == True:
+        player.spell_list.insert(0, nuke()) # neuer spell wird an erste stelle der liste gepackt
 
     while dungeon_current.current_battle < dungeon_current.total_battles:
 

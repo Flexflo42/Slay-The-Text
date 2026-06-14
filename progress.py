@@ -118,7 +118,7 @@ def progress_player(currency = 0):
         progress_armor()], currency
     )
 
-progress_status = progress_player(10) # default value 0
+progress_status = progress_player(0) # default value 0
 
 
 
@@ -165,8 +165,6 @@ def shop():
             active_purchase = True
 
 
-
-
 '''
 def load_progress_old(): # Werte werden zur Laufzeit (wenn die Objekte schon existieren) angepasst
     data = load_progress_savefile()
@@ -183,9 +181,5 @@ def load_progress_old(): # Werte werden zur Laufzeit (wenn die Objekte schon exi
 #for i in range (5): print(progress_status.progress_list[i].tier) # test
 '''
 
-
 # for i in range (5): print(progress_status.progress_list[i].tier) # test
 
-
-
-#progress_status.save_progress()

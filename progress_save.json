@@ -3,17 +3,17 @@
         "HP": {
             "value": 10,
             "cost": 2,
-            "tier": 2
+            "tier": 0
         },
         "Mana": {
             "value": 10,
             "cost": 2,
-            "tier": 1
+            "tier": 0
         },
         "Damage": {
             "value": 3,
             "cost": 2,
-            "tier": 1
+            "tier": 0
         },
         "Magic": {
             "value": 3,
@@ -23,8 +23,8 @@
         "Armor": {
             "value": 1,
             "cost": 2,
-            "tier": 1
+            "tier": 0
         }
     },
-    "currency": 16
+    "currency": 0
 }
