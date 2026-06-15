@@ -98,6 +98,8 @@ def combat(player, opponent):
 
         if opponent.hp <= 0:
             print(f"{opponent.name} was defeated!\n")
+            progress.progress_status.currency += (1 * opponent.pool) # Währungsbelohnung für die Metaprogression, um 1 höher Stufe von Monster, ggfs eigene variable erstellen falls wert leicht geändert werden soll
+            print(f"You have received {1 * opponent.pool} Essence as a reward. You currently have {progress.progress_status.currency} Essence\n")
             return "Victory"
         else:
             selected = opponent.choose_spell()
