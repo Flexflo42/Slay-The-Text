@@ -5,6 +5,8 @@ import random
 import time
 import progress
 from spell import nuke
+blue = "\033[34m"
+endcol = "\033[0m"
 dev_mode = False
 
 # Später noch sleep() einbauen um die Ausgaben im Terminal etwas "natürlicher" zu machen
@@ -48,7 +50,7 @@ def print_battle_status(player, opponent):  # clear terminal noch einbauen? Gibt
 def print_spells(player):
     print()
     for counter, spell in enumerate(player.spell_list, start=1):   # durch enumerate wird gleichzeitig die liste durchgegangen und der zähler hochgezählt
-        print(f"{counter}: {spell.name} +{spell.spell_level} [{spell.mana_cost}]", end = " | ") # sollte spätestens bei mehr als 6 spells in 2 zeilen kommen (verzweigung nutzen?)
+        print(f"{counter}: {spell.name} +{spell.spell_level} [{blue}{spell.mana_cost}{endcol}]", end = " | ") # sollte spätestens bei mehr als 6 spells in 2 zeilen kommen (verzweigung nutzen?)
     print()
     print()
 
