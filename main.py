@@ -1,6 +1,9 @@
 import run
+import progress
+progress.progress_status.load_progress()
 
 game_runs = True
+
 
 
 
@@ -17,12 +20,15 @@ while game_runs:
             case "s":
                 run.start_run()
             case "u":
-                pass #menu für metaprogression einfügen
+                progress.upgrade_menu()
             case "e":
                 validation = input("\nDo you really want to quit? Press Y/n: ")
                 if validation   == "y":
                     exit()
                 else:
                     pass
+            case "nuke":
+                run.dev_mode = True
+                print("I am the one who knocks!")
             case _:
-                print("Invalid Option, try again.")
+                print("Invalid Option, please try again.")

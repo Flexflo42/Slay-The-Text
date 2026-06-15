@@ -2,6 +2,7 @@ import spell
 import random
 
 class Monster:
+
     def __init__(self, name, pool, max_hp, hp, damage, magic, armor, behavior, spell_list):
         self.name = name
         self.pool = pool
@@ -48,7 +49,6 @@ class Monster:
                 return self.spell_list[1]
             else:
                 return random.choice(self.spell_list[2:7])
-
 
 # die gegner im 2. oder 3. Pool könnten Fähigkeiten mit höheren Stufen bekommen, besonders bei skills die nicht mit den stats skalieren
 # spell factories müssen dann Parameter erhalten können, über einen weiteren paramter könnte auch der Name des Skills angepasst werden

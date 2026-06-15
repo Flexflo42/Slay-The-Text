@@ -4,25 +4,28 @@ pygame.init()
 pygame.mixer.init()
 
 class Spell:
+
     def __init__(self, name, mana_cost, category, modifier, spell_level=1):
         self.name = name
         self.mana_cost = mana_cost
         self.category= category
-        self.modifier = modifier # Nutzbar für Buffs und Nerfs wie Rüstungsbrecher
+        self.modifier = modifier # Ein Wert für alle Spellarten, solange Spells immer nur genau ein Verhalten haben
         self.spell_level = spell_level
         # um spells exakt addressieren zu können, z.B. wenn man den Spellnamen zur Laufzeit ändern möchte können IDs hilfreich sein
 
     def use_spell(self, user, target):
-        
         print(f"{user.name} uses {self.name}!")
-        # Kann weg, falls Combat Result als eigene Klasse implementiert werden sollte!
 
         if self.category == "attack":
             value = self.modifier + (self.spell_level * 0.25) 
             dmg = value * user.damage
             reduced_dmg = dmg - (dmg * self.armor_calc(target))           
             reduced_dmg_int = round(reduced_dmg)
-            target.hp -= reduced_dmg_int #wenn Zeit noch so polieren, dass die HP nicht unter 0 gehen kann
+            if target.hp - reduced_dmg_int < 0: # Damit die HP nicht unter sondern immer auf 0 geht
+                reduced_dmg_int = target.hp
+                target.hp -= reduced_dmg_int
+            else:
+                target.hp -= reduced_dmg_int #
             pygame.mixer.music.load("soundfiles/SwingWeaponSpecialWarriorA.ogg")
             pygame.mixer.music.play()
         
@@ -44,8 +47,8 @@ class Spell:
             print(f"{user.name} healed itself for {heal_amount_int} HP!")
 
         elif self.category == "damage_buff":
-            value = self.modifier + (self.spell_level * 2) 
-            user.damage += value 
+            value = self.modifier + (self.spell_level * 2)
+            user.damage += value
 
             print(f"{user.name} increased its damage by {value}!")
 
@@ -63,16 +66,20 @@ class Spell:
 
             print(f"{user.name} increased its armor by {value}!")
 
-        # Anpassung wenn Spells mit neuen Effekten erstellt werden
+        elif self.category == "restore_mana":
+            value = self.modifier + (self.spell_level * 5)
+            if value + user.mana > user.max_mana: # Damit Mana nicht über den maximalen Wert hinaus geht
+                value = user.max_mana - user.mana
+                user.mana += value
+            else:
+                user.mana += value
+            print(f"{user.name} has restored {value} of his mana!")
+# Anpassung wenn Spells mit neuen Effekten erstellt werden
 
     def armor_calc(self, target):
         damage_reduction = target.armor / (target.armor + 15) #bei 15 armor ist die reduktion bei 50% -> deminishing returns
         return damage_reduction
     
-    
-
-        
-
 # Bitte Helm tragen, ab hier beginnt die Factory-Straße
 
 def slash(level=1):
@@ -82,7 +89,7 @@ def bite(level=1):
     return Spell("Bite", 20, "attack", 1.25, level)
 
 def power_slash(level=1):
-    return Spell("Power Slash", 30, "attack", 20.25, level)
+    return Spell("Power Slash", 30, "attack", 20.25, level)  # 30, 2.25 aktueller default wert
 
 def heal(level=1):
     return Spell("Heal", 30, "heal", 0.75, level)
@@ -96,9 +103,14 @@ def crush_armor(level=1):
 def armor_spell(level=1):
     return Spell("Armor Spell", 20, "armor_buff", 2.5, level)
 
+def meditation(level=1):
+    return Spell("Meditation", 0, "restore_mana", 30, level)
 # Player und Monster erhalten so seperate Objekte die individuell angepasst werden können -> SpellUpgrades
 
+# devmode spells
 
+def nuke(level=1):
+    return Spell("Nuke", 10, "attack", 30, level)
 
 
 
