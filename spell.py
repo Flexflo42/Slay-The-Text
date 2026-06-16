@@ -89,7 +89,7 @@ def bite(level=1):
     return Spell("Bite", 20, "attack", 1.25, level)
 
 def power_slash(level=1):
-    return Spell("Power Slash", 30, "attack", 20.25, level)  # 30, 2.25 aktueller default wert
+    return Spell("Power Slash", 30, "attack", 2.25, level)  # 30, 2.25 aktueller default wert
 
 def heal(level=1):
     return Spell("Heal", 30, "heal", 0.75, level)
@@ -104,7 +104,7 @@ def armor_spell(level=1):
     return Spell("Armor Spell", 20, "armor_buff", 2.5, level)
 
 def meditation(level=1):
-    return Spell("Meditation", 0, "restore_mana", 30, level)
+    return Spell("Meditation", 0, "restore_mana", 25, level)
 # Player und Monster erhalten so seperate Objekte die individuell angepasst werden können -> SpellUpgrades
 
 # devmode spells
