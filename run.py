@@ -5,11 +5,12 @@ import random
 import time
 import progress
 from spell import nuke
-dev_mode = False
 import pygame
-
 pygame.init()
 pygame.mixer.init()
+
+dev_mode = False
+
 
 # Später noch sleep() einbauen um die Ausgaben im Terminal etwas "natürlicher" zu machen
 
