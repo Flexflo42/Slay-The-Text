@@ -9,7 +9,7 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
-blue = "\033[34"
+blue = "\033[34m"
 reset = "\033[0m"
 
 dev_mode = False
