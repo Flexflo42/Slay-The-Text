@@ -27,9 +27,9 @@ Erstellen:
 
 Aktivieren:
 In cmd.exe
-```venv\Scripts\activate.bat```
+```myvenvname\Scripts\activate.bat```
 In PowerShell
-```venv\Scripts\Activate.ps1``` 
+```myvenvname\Scripts\Activate.ps1``` 
 
 Sobald man im Virtual Environment ist kann man mit Python's Packetmanager 'pip' das Paket installieren
 ```pip install pygame```
