@@ -83,17 +83,40 @@ Als Projektmanagement Methode haben wir ein Kanban Board gewählt, bestehend aus
 \begin{figure}[H] %[H] 
 \centering
 \includegraphics[width=0.78\textwidth]{KanbanBoard.png}
-\caption{\label{fig:ZBR}Kanban Board}
+\caption{\label{fig:Kanban}Kanban Board}
 \end{figure}
 
 % -------------------------------------- %
 \newpage
+\subsection{UML Diagramm und Software Architektur}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{UmlAlt.png}
+  \caption{Erster Entwurf unseres UML Diagramms}
+  \label{fig:UMLnew}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{UmlAlt.png}
+  \caption{Unser UML Diagramm gegen Ende des Projekts}
+  \label{fig:UMLdone}
+\end{minipage}
+\end{figure}
+
+Wir haben uns dazu entschieden die im Kanban Board definierten Features in Klassen umzusetzen und nicht mit Vererbung zu arbeiten. Beispielsweise sind Gegner keine Subklasse des Hauptcharakters. Bei den Methoden haben wir versucht darauf zu achten das \glqq separation of concerns\grqq \space Prinzip einzuhalten und Methoden möglichst getrennt voneinander bestimmte Aufgaben zu übergeben. \newline \noindent
+Zu Beginn war unser UML Diagramm wenig umfangreich und hat nur die Klasse für Gegner und das Kampfergebnis beschrieben. Am Ende des Projekts enthält es alle implementierten Klassen inklusive deren Methoden. Trotzdem ist es keine vollständige Darstellung unseres Source Codes da manche Funktionen nicht enthalten sind. 
+% -------------------------------------- %
+\vspace{2cm}
 \subsection{Testszenarien}
 
-
-% -------------------------------------- %
-
-
+\begin{figure}[H] %[H] 
+\centering
+\includegraphics[width=1\textwidth]{Testszenarios.png}
+\caption{\label{fig:Tests}Kanban Board}
+\end{figure}
 
 
 % -------------------------------------- %
