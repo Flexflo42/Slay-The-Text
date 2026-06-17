@@ -3,3 +3,13 @@ venv/*
 __pycache__/
 *.pyc
 myvenvname/*
+Dokumentation/*.aux
+Dokumentation/*.bbl
+Dokumentation/*.blg
+Dokumentation/*.fdb_latexmk
+Dokumentation/*.fls
+Dokumentation/*.log
+Dokumentation/*.out
+Dokumentation/*.synctex.gz
+Dokumentation/*.toc
+
