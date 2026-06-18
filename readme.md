@@ -1,3 +1,7 @@
+# Dokumentation
+
+Eine umfassende Projektdokumentation inklusive Spielanleitung befindet sich im Dokumentationsordner
+
 # Installation
 Ein Python Virtual Environment muss aktiviert werden, um einen Ort zu haben, an dem Pakete isoliert vom System (also auch anderen Projekten) installiert werden können.
 

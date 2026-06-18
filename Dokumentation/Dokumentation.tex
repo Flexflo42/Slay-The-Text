@@ -1,0 +1,177 @@
+\documentclass[12pt]{article}
+
+% Language setting
+\usepackage[ngerman]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=4cm,bottom=2cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+\usepackage{float}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[figure]{hypcap}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{fancyhdr}      
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+
+
+\setcounter{secnumdepth}{4}
+
+% Page layout
+\geometry{margin=1in}
+\pagestyle{fancy}
+\setlength{\headheight}{50.5120pt}  
+\setlength{\headsep}{20pt}     % Abstand zwischen Header und Text
+
+
+% Header setup
+\fancyhf{} % header und footer aufräumen
+
+%\fancyhead[L]{\includegraphics[width=2.5cm,height=2.5cm,keepaspectratio]{}}
+\fancyhead[R]{
+  \begin{tabular}{r}
+    \textbf{Name:} Stolz, Katzenski, Behm \\
+    \textbf{Abgabe:} 21.Juni 2026 
+  \end{tabular}
+}
+ %\addtolength{\topmargin}{-20.51192pt}
+% Footer (optional)
+\fancyfoot[C]{\thepage}
+
+
+\begin{document}
+
+\vspace*{0.01cm}
+
+\begin{center}
+    \Large
+    \textbf{Projektdokumentation: Slay The Text }
+        
+    \vspace{0.4cm}
+    \large
+   
+       
+    %\vspace{0.9cm}
+    %\textbf{Abstract}
+\end{center}
+
+
+\tableofcontents 
+\vspace*{0.5cm}
+\noindent 
+
+% -------------------------------------- %
+
+\section{Planung}
+
+Begonnen hat unser Projekt im Bereich der Objektorientierten Programmierung am 13.04.2026 mit einem Brainstorming für mögliche Themen. Anfänglich ging es um Probleme aus dem IT-Alltag jedoch einigten wir uns schnell darauf ein Spiel zu entwickeln. Unsere Gruppe bestehend aus Marek Stolz, Alexander Behm und Florian Katzenski entschloss sich für ein Text basiertes Spiel, in dem Runden basiert gegen Gegner gekämpft werden kann.
+
+
+% -------------------------------------- %
+
+\subsection{Kanban Board und MoScOw Methode}
+Als Projektmanagement Methode haben wir ein Kanban Board gewählt, bestehend aus dem Backlog, was aktuell umgesetzt wird und was abgeschlossen ist. Im Backlog werden Aufgaben definiert und kategorisiert nach \glqq Must have\grqq, \glqq Should Have\grqq \space und \glqq Could Have\grqq. \newline \noindent Die "Must have" Funktionen sind absolut notwendig damit wir ein MVP (Minimum viable product) haben. Unser MVP vermittelt die grundlegende Spielidee verfügt aber noch nicht über besondere Features. Die Should haves sind wichtige Features, die jedoch nicht absolut notwendig sind. Zum Beispiel eine Währung um Upgrades kaufen zu können oder besondere Fähigkeiten des Hauptcharakters oder der Monster. Bei unseren \glqq Could haves\grqq \space ging es vor allem um die Darstellung des Spiels und bestimmten Fällen, die nicht häufig eintreten (\glqq Edge cases\grqq).
+
+\noindent Bei der Implementierung haben wir erst die \glqq Must haves\grqq, dann die \glqq Should haves\grqq \space und zuletzt die \glqq Could haves\grqq implementiert. Definiert haben wir außerdem die \glqq Won't haves\grqq, also Dinge die wir nicht in unserem Spiel umsetzen, da Sie zu Zeit aufwendig sind oder zu weit gehen. 
+
+\newpage
+\begin{figure}[H] %[H] 
+\centering
+\includegraphics[width=0.78\textwidth]{KanbanBoard.png}
+\caption{\label{fig:Kanban}Kanban Board}
+\end{figure}
+
+% -------------------------------------- %
+\newpage
+\subsection{UML Diagramm und Software Architektur}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{UmlAlt.png}
+  \caption{Erster Entwurf unseres UML Diagramms}
+  \label{fig:UMLnew}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{classes_neu.png}
+  \caption{Unser UML Diagramm gegen Ende des Projekts}
+  \label{fig:UMLdone}
+\end{minipage}
+\end{figure}
+
+Wir haben uns dazu entschieden die im Kanban Board definierten Features in Klassen umzusetzen und nicht mit Vererbung zu arbeiten. Beispielsweise sind Gegner keine Subklasse des Hauptcharakters. Bei den Methoden haben wir versucht darauf zu achten das \glqq separation of concerns\grqq \space Prinzip einzuhalten und Methoden möglichst getrennt voneinander bestimmte Aufgaben zu übergeben. \newline \noindent
+Zu Beginn war unser UML Diagramm wenig umfangreich und hat nur die Klasse für Gegner und das Kampfergebnis beschrieben. Am Ende des Projekts enthält es alle implementierten Klassen inklusive deren Methoden. Trotzdem ist es keine vollständige Darstellung unseres Source Codes da manche Funktionen nicht enthalten sind. 
+% -------------------------------------- %
+\vspace{2cm}
+\subsection{Testszenarien}
+
+\begin{figure}[H] %[H] 
+\centering
+\includegraphics[width=1\textwidth]{Testszenarios.png}
+\caption{\label{fig:Tests}Testboard}
+\end{figure}
+
+Während dem entwickeln haben unser Programm regelmäßig getestet. Mehrere Testszenarios haben wir in einem Board notiert. Jeder Test erhält eine ID und eine Beschreibung. Bei der Beschreibung wird unterschieden in den \glqq happy path \grqq \space und den \glqq edge case\grqq \space. Ein \glqq happy path \grqq \space ist der optimale Weg, bei dem die Eingabe des Users der gewünschten Eingabe entspricht und das Ergebnis der getesteten Funktion auch dem gewünschten Ergebnis entspricht. \glqq Edge cases \grqq \space sind die Fälle, bei denen nicht die User Eingabe dem gewünschten Entspricht oder die Ausgabe der Funktion nicht dem von uns gewünschten Entspricht. Von diesen Wegen gibt es in einem Programm extrem viele, weshalb unser Board nur einen Bruchteil davon darstellt.
+% -------------------------------------- %
+
+
+\end{document}
+
+
+% -------------------------------------- nützliches Zeug
+
+%\section
+%\subscection
+%\subsubsection
+
+%\begin{figure}[H] %[H] 
+%\centering
+%\includegraphics[width=0.3\textwidth]{ZoneBitRecording.png}
+%\caption{\label{fig:ZBR}Sektoren Einteilung einer HDD mit Zone-Bit-Recording}
+%\end{figure}
+
+%\begin{wrapfigure}{r}{5.5cm}
+%\includegraphics[width=5.5cm]{sandwich.png}
+%\caption{Sudo make a sandwich}\label{wrap-fig:1}
+%\end{wrapfigure} 
+
+%\begin{figure}[H]
+%\centering
+%\begin{minipage}{.5\textwidth}
+%  \centering
+%  \includegraphics[width=.8\linewidth]{LCD-Hintergrundbeleuchtung_mit_Edge-LEDs.JPG}
+%  \caption{LCD mit Edge LED \cite{wikipediaHintergrundbeleuchtung}}
+%  \label{fig:edgeLED}
+%\end{minipage}%
+%\begin{minipage}{.5\textwidth}
+%  \centering
+%  \includegraphics[width=.8\linewidth]{LCD-Hintergrundbeleuchtung_mit_LEDs.JPG}
+%  \caption{Full Array LED \cite{wikipediaHintergrundbeleuchtung}}
+%  \label{fig:fullArrayLED}
+%\end{minipage}
+%\end{figure}
+
+
+%\begin{enumerate}
+%    \item 
+%\end{enumerate}
+
+%\noindent
+%\space
+%\\  -> Absatz
+%\newline
+% \glqq \grqq -> Deutsche Anführungszeichen
+%\cite{x, y}
+
+
+%\nocite{*}  %-> alle Quellen übernehmen ins Inhaltsverzeichnis, auch wenn nicht direkt zitiert
+%\bibliographystyle{alpha}
+%\bibliography{sample}
+
