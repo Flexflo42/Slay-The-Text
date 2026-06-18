@@ -5,6 +5,7 @@ Sollte dabei ein Kampf verloren sein, muss der Durchlauf von vorne gestartet wer
 
 Nach jedem Kampf werden alle Stats des Spielers auf die Werte zu Beginn eines Kampfes zurückgesetzt.
 Nach einem gewonnen Kampf kann eine von drei zufällig gewählten Fähigkeiten aufgewertet werden, was die jeweilige Effektivität der Fähigkeit erhöht.
+
 #### Stats der Spieler und Gegner
 
 - HP: Zeigt die Lebenspunkte an und ist die primäre Ressource des Spiels
@@ -12,6 +13,7 @@ Nach einem gewonnen Kampf kann eine von drei zufällig gewählten Fähigkeiten a
 - Armor: Reduziert prozentuell den Schaden der erlitten wird
 - Damage: Grundschadenswert der mit dem Wert der Angriffsfägigkeiten multipliziert wird
 - Magic: Bestimmt den Wert der Heilung durch Fähigkeiten
+
 #### Fähigkeiten des Spielers
 
 - Slash: Angrifffähigkeit die soliden Schaden verursacht
