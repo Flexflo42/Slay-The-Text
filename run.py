@@ -4,6 +4,7 @@ import monster
 import random
 import time
 import progress
+import os
 from spell import nuke
 import pygame
 pygame.init()
@@ -87,12 +88,21 @@ def victory_screen():
     print("\n")
     time.sleep(3)
 
+def clear_terminal():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
 def combat(player, opponent): 
     print(f"\nA {opponent.name} appeared. Prepare yourself!")
-    print_battle_status(player, opponent) # inklusive sleep()   
+    time.sleep(2)
+     
 
     while True:
 
+        clear_terminal()
+        print_battle_status(player, opponent) # inklusive sleep() 
         print_spells(player)
         choice = select_spell(player)
         player.pay_mana(choice)

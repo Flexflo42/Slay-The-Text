@@ -12,7 +12,7 @@ game_runs = True
 
 while game_runs:
     
-    print("\nWelcome to Rogue Terminal! A turn-based dungeon crawler rougelite.\n")
+    print("\nWelcome to Slay The Text! A turn-based dungeon crawler rougelite.\n")
     while True:
         menu_choice = input("\nEnter 's' to start a new run, 'u' to access the upgrade menu, or 'e' to exit the game: ")
         
