@@ -151,10 +151,10 @@ def shop():
             if active_purchase == True:
                 while True:
                     validation = input("\nDo you want to save your purchase? Press Y/n: ")
-                    if validation   == "y":
+                    if validation.lower()   == "y":
                         progress_status.save_progress()
                         return
-                    if validation == "n":
+                    if validation.lower() == "n":
                         progress_status.load_progress()
                         return
                     else:

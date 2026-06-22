@@ -23,7 +23,7 @@ while game_runs:
                 progress.upgrade_menu()
             case "e":
                 validation = input("\nDo you really want to quit? Press Y/n: ")
-                if validation   == "y":
+                if validation.lower()   == "y":
                     exit()
                 else:
                     pass
