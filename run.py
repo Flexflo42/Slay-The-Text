@@ -88,11 +88,11 @@ def victory_screen():
     print("\n")
     time.sleep(3)
 
-def clear_terminal():
-    if os.name == "nt":
-        os.system("cls")
-    else:
-        os.system("clear")
+#def clear_terminal():
+#    if os.name == "nt":
+#        os.system("cls")
+#    else:
+#        os.system("clear")
 
 def combat(player, opponent): 
     print(f"\nA {opponent.name} appeared. Prepare yourself!")
@@ -101,7 +101,7 @@ def combat(player, opponent):
 
     while True:
 
-        clear_terminal()
+        #clear_terminal()
         print_battle_status(player, opponent) # inklusive sleep() 
         print_spells(player)
         choice = select_spell(player)
