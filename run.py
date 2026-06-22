@@ -101,7 +101,7 @@ def combat(player, opponent):
 
     while True:
 
-        #clear_terminal()
+        #clear_terminal() # schadet im aktuellen build der lesbarkeit mehr als es hilft
         print_battle_status(player, opponent) # inklusive sleep() 
         print_spells(player)
         choice = select_spell(player)
